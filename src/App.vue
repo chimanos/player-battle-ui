@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <router-view @authenticated="setAuthenticated"></router-view>
+    <router-view @authenticated="setAuthenticated" @logout="logout"></router-view>
   </div>
 </template>
 
@@ -13,7 +13,7 @@
         authenticated: false
       }
     },
-    mounted() {
+    beforeUpdate() {
       if(this.authenticated === false) {
         this.$router.replace({ name: "Login" })
       }
@@ -21,6 +21,7 @@
     methods: {
       logout() {
         this.authenticated = false
+        this.$router.replace({ name: "Login" })
       },
       setAuthenticated(status) {
         this.authenticated = status;

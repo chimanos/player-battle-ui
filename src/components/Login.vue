@@ -37,7 +37,8 @@
           <b-alert variant="danger"
                    dismissible
                    :show="error.showErrorAlert"
-                   @dismissed="error.showErrorAlert=false">
+                   @dismissed="error.showErrorAlert=false"
+                   class="mt-4">
             {{error.msg}}
           </b-alert>
         </b-form>
@@ -72,13 +73,15 @@
           <b-alert variant="danger"
                    dismissible
                    :show="error.showErrorAlert"
-                   @dismissed="error.showErrorAlert=false">
+                   @dismissed="error.showErrorAlert=false"
+                   class="mt-4">
             {{error.msg}}
           </b-alert>
           <b-alert variant="success"
                    dismissible
                    :show="success.showOkAlert"
-                   @dismissed="success.showOkAlert=false">
+                   @dismissed="success.showOkAlert=false"
+                   class="mt-4">
             {{success.msg}}
           </b-alert>
         </b-form>
