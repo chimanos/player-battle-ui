@@ -3,7 +3,7 @@ import axios from 'axios'
 export class PlayerWebservice {
 
   login(username, password) {
-      const url = `/player/login`
+      const url = `/player/login`;
       return axios.post(url,
         {
           login: username,
@@ -17,7 +17,7 @@ export class PlayerWebservice {
   }
 
   addUser(username, password) {
-    const url = `/player`
+    const url = `/player`;
 
     return axios.post(url,
       {

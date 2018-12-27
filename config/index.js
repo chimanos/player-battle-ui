@@ -20,6 +20,11 @@ module.exports = {
         "target": 'http://localhost:4040',
         "changeOrigin": true,
         "secure": false
+      },
+      '/character': {
+        "target": 'http://localhost:4040',
+        "changeOrigin": true,
+        "secure": false
       }
     }),
 
