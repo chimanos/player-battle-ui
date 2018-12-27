@@ -15,6 +15,11 @@ module.exports = {
         "target": 'http://localhost:4040',
         "changeOrigin": true,
         "secure": false
+      },
+      '/league': {
+        "target": 'http://localhost:4040',
+        "changeOrigin": true,
+        "secure": false
       }
     }),
 

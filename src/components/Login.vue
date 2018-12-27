@@ -150,8 +150,10 @@
             if(this.inscription.login !== "" && this.inscription.password !== "") {
               playerWebservice.addUser(this.inscription.login, this.inscription.password)
                 .then(response => {
-                  this.success.msg = "Merci pour votre inscription, vous pouvez maintenant vous connecter."
+                  this.success.msg = "Merci pour votre inscription, vous pouvez maintenant vous connecter.";
                   this.success.showOkAlert = true
+                  this.inscription.login = "";
+                  this.inscription.password = "";
                 })
                 .catch(error => {
                   this.error.msg = error.response;
