@@ -25,6 +25,11 @@ module.exports = {
         "target": 'http://localhost:4040',
         "changeOrigin": true,
         "secure": false
+      },
+      '/fight': {
+        "target": 'http://localhost:4040',
+        "changeOrigin": true,
+        "secure": false
       }
     }),
 

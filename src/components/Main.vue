@@ -231,6 +231,11 @@
       <p class="card-text">
         Historique des 5 derniers combats.
       </p>
+      <b-list-group>
+        <b-list-group-item v-for="fight in currentUser.fights">
+          <p>{{ fight.characterOneNameAndScore }} VS {{ fight.characterTwoNameAndScore }} le {{ fight.date }} : {{ fight.winnerName }} gagne !</p>
+        </b-list-group-item>
+      </b-list-group>
     </b-card>
 
     <b-card title="Combat"
@@ -239,6 +244,21 @@
       <p class="card-text">
         3..2..1 Fight !
       </p>
+      <b-dropdown id="ddown1" text="Personnage 1" class="m-md-2">
+        <b-dropdown-item
+          v-for="character in currentUser.characters"
+          @click="currentFight.characterOne = character">{{ character.name }} ({{ character.score }})</b-dropdown-item>
+      </b-dropdown>
+      <h3 class="mt-2">{{ currentFight.characterOne.name }}</h3>
+      <p class="mt-2">VS</p>
+      <h3 class="mt-2">{{ currentFight.characterTwo.name }}</h3>
+      <b-dropdown id="ddown1" text="Personnage 2" class="m-md-2">
+        <b-dropdown-item
+          v-for="character in currentUser.characters"
+          @click="currentFight.characterTwo = character">{{ character.name }} ({{ character.score }})</b-dropdown-item>
+      </b-dropdown>
+      <p></p>
+      <b-btn variant="danger" @click="fight()">Fight !!!</b-btn>
     </b-card>
   </div>
 </template>
@@ -246,9 +266,11 @@
 <script>
     import {LeagueWebservice} from "../webservice/LeagueWebservice";
     import {CharacterWebservice} from "../webservice/CharacterWebservice";
+    import {FightWebservice} from "../webservice/FIghtWebservice";
 
     const leagueWebservice = new LeagueWebservice();
     const characterWebservice = new CharacterWebservice();
+    const fightWebservice = new FightWebservice();
 
     export default {
       name: "Main",
@@ -259,12 +281,17 @@
             login: '',
             wallet: 0,
             leagueId: '',
-            characters: ''
+            characters: '',
+            fights: ''
           },
           currentLeague: {
             leagueId: '',
             name: '',
             nbPlayer: 0
+          },
+          currentFight: {
+            characterOne: '',
+            characterTwo: ''
           },
           leagues: [],
           leagueNameInput: '',
@@ -411,6 +438,15 @@
             this.error.msgCharaIndi = "Le score doit être > 0.";
             this.error.showErrorAlertCharaIndi = true;
           }
+        },
+        fight() {
+          fightWebservice.fight(this.currentFight.characterOne.characterId, this.currentFight.characterTwo.characterId, this.currentUser.playerId)
+            .then(response => {
+              window.localStorage.setItem("currentUser", JSON.stringify(response.data));
+              this.currentUser = response.data;
+              this.currentFight.characterOne = '';
+              this.currentFight.characterTwo = '';
+            });
         }
       }
     }
