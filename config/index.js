@@ -61,6 +61,29 @@ module.exports = {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 
+    proxyTable: ({
+      '/player': {
+        "target": 'http://localhost:4040',
+        "changeOrigin": true,
+        "secure": false
+      },
+      '/league': {
+        "target": 'http://localhost:4040',
+        "changeOrigin": true,
+        "secure": false
+      },
+      '/character': {
+        "target": 'http://localhost:4040',
+        "changeOrigin": true,
+        "secure": false
+      },
+      '/fight': {
+        "target": 'http://localhost:4040',
+        "changeOrigin": true,
+        "secure": false
+      }
+    }),
+
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',

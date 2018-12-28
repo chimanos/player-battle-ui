@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  playerbattle:
+    image: chimanos/player-battle:latest
+    container_name: player-battle
+    restart: always
+    network_mode: host
+    ports:
+      - 4040:4040
+  playerbattleui:
+    image: chimanos/player-battle-ui:latest
+    container_name: player-battle-ui
+    restart: always
+    network_mode: host
+    ports:
+      - 8080:8080
